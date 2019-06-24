@@ -16,7 +16,7 @@ fs.readdir("./commands/", (err, files) => {
   }
 
   file.forEach((f, i) => {
-    let props = require(`./commads/${f}`);
+    let props = require(`./commands/${f}`);
     bot.commands.set(props.help.name, props);
     console.log(`${f} loaded!`);
   });
@@ -27,7 +27,7 @@ bot.on("ready", async () => {
     `${bot.user.username} is online! Currently in ${bot.guilds.size} servers!`
   );
   bot.user.setActivity(`${process.env.PREFIX} | R.I.P. Tony Stark`, {
-    type: "Watching"
+    type: "Listening"
   });
 });
 
