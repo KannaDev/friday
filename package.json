@@ -24,8 +24,11 @@
   },
   "homepage": "https://github.com/KannaDev/friday#readme",
   "dependencies": {
+    "@google-cloud/speech": "^2.1.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.0.0",
-    "fs": "0.0.1-security"
+    "ffmpeg-binaries": "^4.0.0",
+    "fs": "0.0.1-security",
+    "node-opus": "^0.3.2"
   }
 }
