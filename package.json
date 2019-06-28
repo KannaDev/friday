@@ -30,6 +30,9 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
     "fs": "0.0.1-security",
-    "node-opus": "^0.3.2"
+    "node-opus": "^0.3.2",
+    "node-witai-speech": "^1.0.2",
+    "request": "^2.88.0",
+    "underscore": "^1.9.1"
   }
 }
