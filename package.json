@@ -1,0 +1,39 @@
+{
+  "name": "friday",
+  "version": "0.0.1",
+  "description": "A discord bot that is based on F.R.I.D.A.Y by Tony Stark",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KannaDev/friday.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discordjs",
+    "jarvis",
+    "friday"
+  ],
+  "author": "Anirudh Emmadi",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/KannaDev/friday/issues"
+  },
+  "homepage": "https://github.com/KannaDev/friday#readme",
+  "dependencies": {
+    "@google-cloud/speech": "^2.1.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.0.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^4.0.0",
+    "fortnite": "^4.3.2",
+    "fs": "0.0.1-security",
+    "leaguejs": "^2.1.0",
+    "mongodb": "^3.2.7",
+    "node-fetch": "^2.6.0",
+    "node-opus": "^0.3.2"
+  }
+}
