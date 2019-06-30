@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
 const ffmpeg = require('fluent-ffmpeg');
 var WitSpeech = require('node-witai-speech');
+var ask  =require("./ask");
 
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
@@ -23,7 +24,7 @@ var content_type = "audio/wav";
 
 module.exports.run = async (bot, message, args) => {
   const connection = await message.member.voiceChannel.join()
-  connection.playOpusStream(new Silence());
+  const dispatcher = connection.playOpusStream(new Silence());
   const receiver = connection.createReceiver()
 
   connection.on("speaking", (user, speaking) => {
@@ -55,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
       .format('wav')
       .pipe(outStream);
       audioStream.on('data', (chunk) => {
-        console.log(`Received ${chunk.length} bytes of data.`);
+        //console.log(`Received ${chunk.length} bytes of data.`);
       });
       audioStream.on('end', async () => {
         outStream.end();
@@ -70,7 +71,13 @@ module.exports.run = async (bot, message, args) => {
       });
        
       // check in the promise for the completion of call to witai
+   
+
       parseSpeech.then((data) => {
+        var datta =  data._text.toString();
+        if(datta.includes("what")||datta.includes("who")||datta.includes("when")||datta.includes("where")){
+      ask.voice(message,datta,connection,dispatcher);
+        }
           console.log(data);
       })
       .catch((err) => {
@@ -82,6 +89,10 @@ module.exports.run = async (bot, message, args) => {
     
   });
 };
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 module.exports.help = {
   name: "join"
