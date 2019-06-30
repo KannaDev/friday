@@ -10,6 +10,8 @@ const ftnApi = new Fortnite(process.env.fortnite_token);
 
 module.exports.run = async (bot, message, args) => {
 
+  message.channel.send(message.guild.id)
+
    MongoClient.connect(url, (err, client) => {
     if (err) {
       console.error(err)
