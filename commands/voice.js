@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
 const ffmpeg = require('fluent-ffmpeg');
+var WitSpeech = require('node-witai-speech');
+
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 const fs = require('fs')
@@ -14,6 +16,10 @@ class Silence extends Readable {
     this.push(SILENCE_FRAME);
   }
 }
+
+var API_KEY = process.env.WIT_API;
+var content_type = "audio/wav";
+
 
 module.exports.run = async (bot, message, args) => {
   const connection = await message.member.voiceChannel.join()
@@ -53,6 +59,23 @@ module.exports.run = async (bot, message, args) => {
       });
       audioStream.on('end', async () => {
         outStream.end();
+        var stream = fs.createReadStream("output.wav");
+        var parseSpeech =  new Promise((ressolve, reject) => {
+          // call the wit.ai api with the created stream
+          WitSpeech.extractSpeechIntent(API_KEY, stream, content_type, 
+          (err, res) => {
+              if (err) return reject(err);
+              ressolve(res);
+          });
+      });
+       
+      // check in the promise for the completion of call to witai
+      parseSpeech.then((data) => {
+          console.log(data);
+      })
+      .catch((err) => {
+          console.log(err);
+      })
         console.log('audioStream end')
       })
 
