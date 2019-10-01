@@ -11,3 +11,5 @@ Discord bot based on FRIDAY by Tony Stark
 
 Gotta finish before midnight friday
 
+# MADE FOR DISCORD BOT HACKATHON 
+
